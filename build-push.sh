@@ -13,9 +13,9 @@ docker buildx build \
 --build-arg="TINYGO_VERSION=0.31.1" \
 --build-arg="USER_NAME=capsule" \
 --build-arg="NODE_MAJOR=20" \
---push -t k33g/capsule-workspace:0.0.0 .
+--push -t k33g/capsule-workspace:0.0.1 .
 
-docker pull k33g/capsule-workspace:0.0.0
+docker pull k33g/capsule-workspace:0.0.1
 docker images | grep capsule-workspace
 
 

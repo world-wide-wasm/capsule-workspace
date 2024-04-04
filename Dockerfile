@@ -139,6 +139,20 @@ USER ${USER_NAME}
 RUN touch ~/.sudo_as_admin_successful
 
 # ------------------------------------
+# Install Rust + Wasm Toolchain
+# ------------------------------------
+RUN <<EOF
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+export RUSTUP_HOME=~/.rustup
+export CARGO_HOME=~/.cargo
+export PATH=$PATH:$CARGO_HOME/bin
+curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+rustup target add wasm32-wasi
+EOF
+
+ENV PATH="/home/${USER_NAME}/.cargo/bin:$PATH"
+
+# ------------------------------------
 # Install OhMyBash
 # ------------------------------------
 RUN <<EOF
